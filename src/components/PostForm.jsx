@@ -15,7 +15,6 @@ function PostForm({post}) {
     },
   });
 
-
   
   const navigate = useNavigate();
   const userData = useSelector((state) => state.user.userData);
@@ -57,7 +56,6 @@ function PostForm({post}) {
   };
 
 
-
   const slugTransform= useCallback((value)=>{
     if(value && value==='string'){
       return value
@@ -68,7 +66,6 @@ function PostForm({post}) {
       return ''
     }
   },[])
-
 
 
   useEffect(()=>{
