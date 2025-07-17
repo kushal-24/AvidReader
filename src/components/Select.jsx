@@ -1,4 +1,4 @@
-import React, {forwardRef} from "react";
+import React, {useId} from "react";
 
 function Select({ 
     options, 
@@ -6,9 +6,10 @@ function Select({
     className = "", 
     ...props }
     ,ref) {
+    const id = useId();
   return (
     <div className="w-full">
-      {label && <label htmlFor={id} className=""></label>} 
+      {label && <label htmlFor={id} className="">{label}</label>} 
       <select
         {...props}
         id={id}

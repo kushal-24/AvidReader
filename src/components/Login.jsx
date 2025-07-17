@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login as authLogin } from "../features/authSlice.js";
 import { Button, Input, Logo } from "./index.js";
 import { useDispatch } from "react-redux";
@@ -7,24 +7,25 @@ import authService from "../appWrite/auth.js";
 import { useForm } from "react-hook-form";
 
 function Login() {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm();
+  const [error, setError] = useState(null);
+
   const login = async (data) => {
-    setError("");
-    try {
+    setError("");{/* Reset error message before each login attempt */}
+    try { 
       const session = await authService.login(data);
       if (session) {
-        const userData = authService.getCurrentUser();
-        if (userData) dispatch(authLogin(userData));
+        const userData = await authService.getCurrentUser();
+        if (userData) dispatch(authLogin({userData}));
         navigate("/");
       }
     } catch (error) {
       setError(error.message);
     }
   };
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
-  const [error, setError] = useState("null");
 
   return (
     <div className="flex items-center justify-center w-full">
@@ -40,7 +41,7 @@ function Login() {
           Sign in to your account
         </h2>
         <p className="mt-2 text-center text-base text-black/60">
-          Don&apos;t have any account?&nbsp;
+          Don&apos;t have any account?&nbsp;{/*means space */}
           <Link
             to="/signup"
             className="font-medium text-primary transition-all duration-200 hover:underline"
@@ -56,13 +57,13 @@ function Login() {
             type="email"
             placeholder="Enter the email pls"
             {
-              ...register("email", {
+              ...register("email", { 
                 required: "Email is required",
                 validate: {
                 matchPattern: (val)=>  /^\S+@\S+$/.test (val) || "Invalid email format",  
                 },
               })}            
-            />
+            />  {/*this ...register("email is saying that--Track the input with the name email, and apply the following validation rules to it. ") */}
             <Input
             label="Password: "
             type="password" 
@@ -70,6 +71,8 @@ function Login() {
             {...register("password", {
               required: true,
             })}
+            /*^\S+@\S+$ is a regex that checks for:
+            At least one non-space character before and after @ No spaces.*/
             />
             <Button>Sign In</Button>
           </div>

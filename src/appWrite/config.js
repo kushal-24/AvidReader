@@ -1,5 +1,5 @@
-import config from "../config/config";
-import { Client, Account, ID, Databases, Query, Storage, Query } from "appwrite";
+import config from "../config/config.js";
+import { Client, ID, Databases, Query, Storage } from "appwrite";
 
 export class Service {
     client = new Client();
@@ -27,7 +27,8 @@ export class Service {
                     slug,
                     content,
                     coverImg,
-
+                    status,
+                    userId
                 }
             )
         } catch (error) {
@@ -84,9 +85,8 @@ export class Service {
                 config.appwriteCollectionId,
                 queries ,
             )
-            return true
         } catch (error) {
-            throw new Error(`Appwrite service :: getPosts :: error ${error}`);
+           console.log(`Appwrite service :: getPosts :: error ${error}`);
             return false;
         }
     }
@@ -111,9 +111,8 @@ export class Service {
                 config.appwriteBucketId,
                 fileId
             );
-            return true;
         } catch (error) {
-            throw new Error(`Appwrite service :: deleteFile :: error ${error}`);
+            console.log(`Appwrite service :: deleteFile :: error ${error}`);
             return false
         }
     }
@@ -129,11 +128,8 @@ export class Service {
         }
     }
 
-
-
-
 }
 
 
 const service = new Service();
-export default Service;
+export default service;

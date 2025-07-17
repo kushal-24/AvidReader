@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-import { Container } from '../components'
+import { Container, PostForm } from '../components'
 import appwriteService from '../appWrite/config'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -15,6 +15,8 @@ function EditPost() {
                     setPost(post);
                 }
             })
+        }else{
+            navigate('/');
         }
     },[slug, navigate])
     return post ? (

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Container } from "../components";
 import { PostCard } from "../components";
 import appwriteService from "../appWrite/config";
@@ -7,7 +7,7 @@ import appwriteService from "../appWrite/config";
 function Home() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    appwriteService.getPosts().then((posts) => {
+    appwriteService.getPost([]).then((posts) => {
       if (posts) {
         setPosts(posts.documents);
       }

@@ -1,14 +1,11 @@
 import React from "react";
-import Container from "../container/Container.jsx";
-import Logo from "../Logo.jsx";
-import LogoutBtn from "./LogoutBtn.jsx";
+import {LogoutBtn, Container, Logo} from '../index.js'
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 //Hey Redux, give me a slice of the state so I can use it in this component.
-import { Navigate } from "react-router-dom";
 
 const Header = () => {
-
+  //We are using the useSelector hook to access the auth status from the Redux store.
   const authStatus= useSelector((state)=>state.auth.status)
   const navigate=useNavigate();
 
@@ -48,7 +45,7 @@ const Header = () => {
         <nav className="flex">
           <div className="mr-4" >
             <Link to='/'>
-            <logo width='70px'logo/>
+            <Logo width='70px'/>
             </Link>
           </div>
           <ul className="flex ml-auto">
@@ -63,11 +60,12 @@ const Header = () => {
               </li>
             ) : null
             )}
+            {/*the below line means condition will execute if authStatus is true */}
             {authStatus && (
               <li>
                 <LogoutBtn/>
               </li>
-            )}
+            )} 
           </ul>
         </nav>
       </Container>

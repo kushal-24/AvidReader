@@ -16,6 +16,10 @@ export class AuthService{
             this.account = new Account(this.client);
     }
 
+    //this constructor is created to initialize the client and account properties
+    //and to connnect to the Appwrite server so it can be connected whenever authService is called
+
+
     async createAccount({email, password,name}){
         try {
             const userAccount=await this.account.create(
@@ -37,7 +41,7 @@ export class AuthService{
 
     async login({email, password}){
         try {
-            return await this.account.createEmailPasswordSession(email, password);
+            return await this.account.createEmailPasswordSession(email,password);
         } catch (error) {
             throw error;
         }

@@ -13,7 +13,8 @@ export default function RTE({ name, label, control, defaultValue = "" }) {
         name={name || "content"}
         control={control}//It tells the Controller how to manage the form field's state and validation.
         render={({ field: { onChange } }) => (
-          <Editor
+          <Editor     
+            apiKey="bsykej9oehx324q8fmxklkud0wdwzpberp8nqusawu8bvizv"
             initialValue={defaultValue} //initial value swhich is by default
             init={{
               branding: false, //branding: false removes the "Powered by TinyMCE" footer.

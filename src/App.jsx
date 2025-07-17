@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import React from "react";
 import "./App.css";
 import { useDispatch } from "react-redux";
 import authService from "./appWrite/auth.js";
@@ -25,11 +26,11 @@ function App() {
   }, []);
 
   return !loading ? (
-    <div className="min-h-screen min-w-full text-black flex content-between bg-emerald-100">
+    <div className="min-h-screen min-w-full text-black flex content-between bg-cyan-100">
       <div className="w-full block">
         <Header />
         <main>
-          TODO <Outlet />
+          TODO:  <Outlet />
         </main>
         <Footer />
       </div>
