@@ -10,7 +10,7 @@ function EditPost() {
 
     useEffect(() => {
         if(slug){
-            appwriteService.getPost(slug).then((post)=>{
+            appwriteService.getPost(slug).then((post)=>{//ig a change here is needed
                 if(post) {
                     setPost(post);
                 }
@@ -19,13 +19,13 @@ function EditPost() {
             navigate('/');
         }
     },[slug, navigate])
-    return post ? (
+    return (
         <div className='py-8'>
             <Container>
                 <PostForm post={post} />
             </Container>
         </div>
-      ) : null
+      )
 }
 
 export default EditPost

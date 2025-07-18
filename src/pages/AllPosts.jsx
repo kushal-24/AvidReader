@@ -4,13 +4,23 @@ import { PostCard, Container } from "../components";
 
 function AllPosts() {
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-  appwriteService.getPosts([]).then((posts) => {
-    if (posts) {
-      setPosts(posts.documents)
-    }
-  });
-}, []);
+    appwriteService.getPosts([]).then((posts) => {
+      if (posts) {
+        setPosts(posts.documents);
+      }
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="w-full py-8 text-center text-gray-600 text-lg">
+        Loading posts...
+      </div>
+    );
+  }
 
   return (
     <div className="w-full py-8">

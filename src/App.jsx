@@ -7,6 +7,7 @@ import { login, logout } from "./features/authSlice.js";
 import Header from "./components/header/Header.jsx";
 import Footer from "./components/footer/Footer.jsx";
 import { Outlet } from "react-router-dom";
+import reader from './assets/reader.jpg';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -26,11 +27,11 @@ function App() {
   }, []);
 
   return !loading ? (
-    <div className="min-h-screen min-w-full text-black flex content-between bg-cyan-100">
+    <div className="min-h-screen w-full flex flex-col bg-bodyBlue text-black">
       <div className="w-full block">
         <Header />
-        <main>
-          TODO:  <Outlet />
+        <main className="flex-grow">
+          <Outlet />
         </main>
         <Footer />
       </div>

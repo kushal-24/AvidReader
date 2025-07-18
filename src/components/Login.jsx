@@ -28,11 +28,11 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-full mt-[84px]">
       <div
         className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
       >
-        <div className="mb-2 flex justify-center">
+        <div className="mb-2 flex justify-center jus">
           <span className="inline-block w-full max-w-[100px]">
             <Logo width="100%" />
           </span>
@@ -74,7 +74,7 @@ function Login() {
             /*^\S+@\S+$ is a regex that checks for:
             At least one non-space character before and after @ No spaces.*/
             />
-            <Button>Sign In</Button>
+            <div className="flex justify-center"><Button className="transition-transform duration-300 transform hover:scale-110">Sign In</Button></div>
           </div>
         </form>
       </div>

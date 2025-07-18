@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {LogoutBtn, Container, Logo} from '../index.js'
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -8,6 +8,8 @@ const Header = () => {
   //We are using the useSelector hook to access the auth status from the Redux store.
   const authStatus= useSelector((state)=>state.auth.status)
   const navigate=useNavigate();
+
+  
 
   const navItems = [
     {
@@ -40,21 +42,21 @@ const Header = () => {
 
 
   return (
-    <header className="py-3 shadow bg-cyan-700 " >
+    <header className="p-3 fixed bg-navBlue z-10 w-full font-poppins" >
       <Container>
-        <nav className="flex">
+        <nav className="flex justify-between items-center">
           <div className="mr-4" >
             <Link to='/'>
-            <Logo width='70px'/>
+            <Logo className="w-[50px]"/>
             </Link>
           </div>
-          <ul className="flex ml-auto">
+          <ul className="flex text-xl font-poppins gap-[45px] ">
             {navItems.map((item)=>
             item.active? (
-              <li key={item.name}>
-                <button
+              <li key={item.name}className="hover:text hover:scale-105 transition-all ease-in-out duration-300">
+                <button  
                 onClick={()=>navigate(item.slug)}
-                className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
+                className=" items-center"
                 >{item.name}
                 </button>
               </li>
@@ -69,8 +71,6 @@ const Header = () => {
           </ul>
         </nav>
       </Container>
-
-
     </header>
   )
 }

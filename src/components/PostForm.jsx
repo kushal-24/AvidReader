@@ -6,7 +6,14 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function PostForm({post}) {
-  const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
+  const { 
+    register, 
+    handleSubmit, 
+    watch, 
+    setValue, 
+    control, 
+    getValues } = 
+    useForm({
     defaultValues: {
       title: post?.title || "",
       slug: post?.slug || "",
@@ -23,7 +30,7 @@ function PostForm({post}) {
   const submit = async (data) => {
     if (post) {
       const file = data.coverImg[0]
-        ? appwriteService.uploadFile(data.coverImg[0])
+        ? await appwriteService.uploadFile(data.coverImg[0])
         : null;
 
       if (file) {
@@ -41,6 +48,7 @@ function PostForm({post}) {
         ? await appwriteService.uploadFile(data.coverImg[0])
         : null;
 
+
       if (file) {
         const fileId = file.$id;
         data.coverImg = fileId;
@@ -56,18 +64,6 @@ function PostForm({post}) {
     }
   };
 
-
-  /*const slugTransform= useCallback((value)=>{
-    if(value && typeof value==='string'){
-      return value
-      .trim()
-      .toLowerCase()
-      .replace(/^[a-zA-Z\d\s]+/g,'-')
-
-      return ''
-    }
-  },[])*/
-
   const slugTransform = useCallback((value) => {
     if (value && typeof value === "string") {
       return value
@@ -80,7 +76,6 @@ function PostForm({post}) {
     return "";
   }, []);
   
-
 
   useEffect(()=>{
     const subscription=watch((value, {name})=>{
