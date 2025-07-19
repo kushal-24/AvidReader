@@ -40,7 +40,7 @@ function Home() {
         <Container className="!p-0 !max-w-full flex-grow ">
           <div className="flex flex-wrap">
             <div className="w-[100vw]">
-              <img src={reader2} className=" w-full brightness-69 "></img>
+              <img src={reader2} className=" w-full mt-[8vh] brightness-69 "></img>
               <h2 className=" absolute text-6xl font-extrabold px-[20px] top-[90px]">{displayedText}</h2>
             </div>
           </div>
@@ -49,8 +49,8 @@ function Home() {
     );
   } else {
     return (
-      <div className="w-full py-8 mt-[15vh] h-[40vh]">
-        <Container>
+      <div className="w-full py-8 mt-[15vh] mb-[7vh] ">
+        <Container className="h-[40vh]">
           <div className="flex flex-wrap">
             {posts.map((post) => (
               <div key={post.$id} className="p-2 w-1/4">

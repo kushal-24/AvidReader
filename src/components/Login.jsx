@@ -30,7 +30,7 @@ function Login() {
   return (
     <div className="flex items-center justify-center w-full mt-[84px]">
       <div
-        className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
+        className={`mx-auto w-full max-w-lg bg-lightBlue rounded-xl p-10 border border-black/10`}
       >
         <div className="mb-2 flex justify-center jus">
           <span className="inline-block w-full max-w-[100px]">
@@ -53,6 +53,7 @@ function Login() {
         <form onSubmit={handleSubmit(login)} className="mt-8">
           <div className=" space-y-5">
             <Input
+            required
             label="Email: "
             type="email"
             placeholder="Enter the email pls"
@@ -64,7 +65,8 @@ function Login() {
                 },
               })}            
             />  {/*this ...register("email is saying that--Track the input with the name email, and apply the following validation rules to it. ") */}
-            <Input
+            <Input 
+            required
             label="Password: "
             type="password" 
             placeholder="Enter password"
@@ -74,7 +76,7 @@ function Login() {
             /*^\S+@\S+$ is a regex that checks for:
             At least one non-space character before and after @ No spaces.*/
             />
-            <div className="flex justify-center"><Button className="transition-transform duration-300 transform hover:scale-110">Sign In</Button></div>
+            <div className="flex justify-center"><Button className="transition-transform duration-300 hover:scale-105 bg-navBlue text-zinc-950 border-gray-950 border">Sign In</Button></div>
           </div>
         </form>
       </div>

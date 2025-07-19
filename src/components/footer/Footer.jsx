@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <section className="p-4 bottom-0 w-full overflow-hidden  bg-navBlue font-poppins ">
+    <section className="p-4 w-full overflow-hidden  bg-navBlue font-poppins ">
       <div className="relative z-10 mx-auto max-w-7xl px-4">
         <div className="-m-6 flex flex-wrap">
           <div className="w-full p-6 md:w-1/2 lg:w-5/12">

@@ -14,14 +14,14 @@ const Input= forwardRef(function Input({
   return (
     <div className='w-full'>
         {label && <label 
-            className='inline-block mb-1 pl-1' 
+            className='inline-block mb-1 pl-1 font-poppins text-[1.09rem] text-black ' 
             htmlFor={id}>
                 {label}{required && <span className="text-red-500 ml-1">*</span>}
             </label>
         }
         <input
         type={type}
-        className={`px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border 
+        className={`bg-lightBlue px-3 py-2 rounded-lg  text-black outline-none focus:bg-gray-50 duration-200 border 
             border-gray-200 w-full ${className}`}
             ref={ref}
             {...props}

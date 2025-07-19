@@ -19,6 +19,7 @@ function PostForm({post}) {
       slug: post?.slug || "",
       content: post?.content || "",
       status: post?.status || "active",
+      coverImg: post?.coverImg || null,
     },
   });
   //post is an optional prop. passed with postform If passed, you're in edit mode, 
@@ -29,7 +30,7 @@ function PostForm({post}) {
 
   const submit = async (data) => {
     if (post) {
-      const file = data.coverImg[0]
+      const file = data.coverImg?.[0]
         ? await appwriteService.uploadFile(data.coverImg[0])
         : null;
 
@@ -38,29 +39,29 @@ function PostForm({post}) {
       }
       const dbPost = await appwriteService.updatePost(post.$id, {
         ...data,
-        coverImg: file ? file.$id : undefined,
+        coverImg: file ? file.$id : post.coverImg,
       });
       if (dbPost) {
         navigate(`/post/${dbPost.$id}`);
       }
     } else {
-      const file = data.coverImg[0]
-        ? await appwriteService.uploadFile(data.coverImg[0])
+      const file = 
+      data.coverImg?.[0] ? await appwriteService.uploadFile(data.coverImg[0])
         : null;
 
 
       if (file) {
         const fileId = file.$id;
         data.coverImg = fileId;
-        const dbPost= await appwriteService.createPost({
-          ...data,
-          userId: userData.$id,
-          coverImg: fileId,
-        });
-        if (dbPost) {
-          navigate(`/post/${dbPost.$id}`);
-        }
       }
+    }
+    const dbPost= await appwriteService.createPost({
+      ...data,
+      userId: userData.$id,
+      coverImg: data?.coverImg || null,
+    });
+    if (dbPost) {
+      navigate(`/post/${dbPost.$id}`);
     }
   };
 
@@ -114,11 +115,11 @@ function PostForm({post}) {
           type="file"
           className="mb-4"
           accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("coverImg", { required: !post })}
+          {...register("coverImg")}
       />
       {post && (
-          <div className="w-full mb-4">
-              <img
+          <div className="w-full mb-4 bg-orange-300">
+              <img 
                   src={appwriteService.getFilePreview(post.coverImg)}
                   alt={post.title}
                   className="rounded-lg"
@@ -131,7 +132,7 @@ function PostForm({post}) {
           className="mb-4"
           {...register("status", { required: true })}
       />
-      <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
+      <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full bg-navBlue">
           {post ? "Update" : "Submit"}
       </Button>
   </div>

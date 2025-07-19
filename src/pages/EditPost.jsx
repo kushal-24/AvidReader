@@ -19,13 +19,26 @@ function EditPost() {
             navigate('/');
         }
     },[slug, navigate])
-    return (
-        <div className='py-8'>
+    return post ? (
+        <div className='py-8 mt-[8vh]'>
             <Container>
                 <PostForm post={post} />
             </Container>
         </div>
-      )
+      ) : null
 }
+
+/* with return()
+->our component mounts.
+->post is initially null.
+->PostForm post={post} is rendered immediately.
+->PostForm receives post=null, and likely fails to populate the form (or skips render).
+->Once post is fetched, setPost(post) triggers a re-render, but PostForm has already rendered once with empty data.
+ */
+
+/* with return post? ():null; it says:
+->Don’t render anything at all until post is ready.
+->So when PostForm finally renders, post is non-null, and form fields are populated.
+*/
 
 export default EditPost

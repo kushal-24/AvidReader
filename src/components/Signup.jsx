@@ -90,7 +90,7 @@ function Signup() {
                 required: true,
               })}
             />
-            <Button type="submit" className="w-full hover:scale-105 bg-navBlue text-slate-950">
+            <Button type="submit" className="w-full hover:scale-105 bg-navBlue border-gray-950 border">
               Create Account
             </Button>
           </div>

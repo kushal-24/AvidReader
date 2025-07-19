@@ -5,6 +5,7 @@ export class Service {
     client = new Client();
     databases;
     bucket;
+    
     constructor() {
         this.client
             .setEndpoint(config.appwriteUrl)//setEndpoint(...): Sets the base URL of your Appwrite backend.
@@ -93,12 +94,12 @@ export class Service {
 
     //upload files
 
-    async uploadFile(file){
+    async uploadFile(fileId){
         try {
             return await this.bucket.createFile(
                 config.appwriteBucketId,
                 ID.unique(),
-                file
+                fileId
             ); 
         } catch (error) {
             throw new Error(`Appwrite service :: uploadFile :: error ${error}`);
@@ -119,7 +120,7 @@ export class Service {
 
     getFilePreview(fileId){
         try {
-            return this.bucket.getFilePreview(
+            return this.bucket.getFileDownload(
                 config.appwriteBucketId,
                 fileId
             );
