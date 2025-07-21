@@ -1,5 +1,6 @@
 import React from 'react'
 import { Login as LoginComponent } from '../components'
+import Transition from '../Transition'
 
 function Login() {
   return (
@@ -9,4 +10,4 @@ function Login() {
   )
 } 
 
-export default Login
+export default Transition(Login)

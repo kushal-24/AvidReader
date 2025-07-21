@@ -53,7 +53,7 @@ function Post() {
             ref={divRef}
             className={`${
               isTaller ? "w-[30vw]" : "w-[50vw]"
-            } p-4 rounded-xl bg-lightBlue`}
+            } p-4 rounded-xl bg-defaults`}
           >
             <h1 className="text-2xl font-bold mb-4">{post.title}</h1>
             <div className="browser-css">{parse(post.content)}</div>

@@ -7,7 +7,8 @@ import { login, logout } from "./features/authSlice.js";
 import Header from "./components/header/Header.jsx";
 import Footer from "./components/footer/Footer.jsx";
 import { Outlet } from "react-router-dom";
-import reader from './assets/reader.jpg';
+import Transition from "./Transition.jsx";
+import { AnimatePresence  } from "framer-motion";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -27,13 +28,13 @@ function App() {
   }, []);
 
   return !loading ? (
-    <div className="min-h-screen w-full flex flex-col bg-bodyBlue text-black">
+    <div className="min-h-screen w-full flex bg-[url('src/assets/bg.jpeg')] flex-col bg-bodyBlue text-black">
       <div className="w-full block">
-        <Header />
+       <Header/>
         <main className="flex-grow">
-          <Outlet />
-        </main>
-        <Footer />
+        <Outlet />
+      </main>
+      <Footer />
       </div>
     </div>
   ) : null;

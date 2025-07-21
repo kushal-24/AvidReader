@@ -91,33 +91,36 @@ function PostForm({post}) {
 
   return(
   <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-  <div className="w-2/3 px-2">
+  <div className="w-2/3 px-2 ">
       <Input
+          labelClassName="text-white"
           label="Title :"
           placeholder="Title"
-          className="mb-4"
+          className="mb-4 backdrop-blur-sm bg-white/60 border border-buttonsT rounded-xl shadow-xl"
           {...register("title", { required: true })}
       />
       <Input
+          labelClassName="text-white"
           label="Slug :"
           placeholder="Slug"
-          className="mb-4"
+          className="mb-4 backdrop-blur-sm bg-white/60 border border-buttonsT rounded-xl shadow-xl"
           {...register("slug", { required: true })}
           onInput={(e) => {
               setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
           }}
       />
-      <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+      <RTE name="content" control={control} defaultValue={getValues("content")} />
   </div>
   <div className="w-1/3 px-2">
       <Input
+          labelClassName="text-white"
           label="Cover Image :"
           type="file"
-          className="mb-4"
+          className="mb-4 backdrop-blur-sm bg-white/60 border border-buttonsT rounded-xl shadow-xl"
           accept="image/png, image/jpg, image/jpeg, image/gif"
           {...register("coverImg")}
       />
-      {post && (
+      {post?(
           <div className="w-full mb-4 bg-orange-300">
               <img 
                   src={appwriteService.getFilePreview(post.coverImg)}
@@ -125,14 +128,14 @@ function PostForm({post}) {
                   className="rounded-lg"
               />
           </div>
-      )}
+      ):null}
+      <label htmlFor="Status" className="text-white font-poppins text-lg">Status</label>
       <Select
           options={["active", "inactive"]}
-          label="Status"
-          className="mb-4"
+          className="mb-4 backdrop-blur-sm bg-white/60 border border-buttonsT rounded-xl shadow-xl "
           {...register("status", { required: true })}
       />
-      <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full bg-navBlue">
+      <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full bg-buttonsT text-white">
           {post ? "Update" : "Submit"}
       </Button>
   </div>

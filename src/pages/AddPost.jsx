@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container } from '../components'
 import { PostForm } from '../components'
+import Transition from '../Transition'
 
 function AddPost() {
   return (
@@ -13,4 +14,4 @@ function AddPost() {
   )
 }
 
-export default AddPost;
+export default Transition(AddPost);

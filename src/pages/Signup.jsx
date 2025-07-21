@@ -1,5 +1,6 @@
 import React from 'react'
 import { Signup as SignupComponent } from '../components'
+import Transition from '../Transition'
 
 function Signup() {
   return (
@@ -9,4 +10,4 @@ function Signup() {
   )
 }
 
-export default Signup
+export default Transition(Signup)

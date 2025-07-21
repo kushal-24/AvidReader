@@ -10,12 +10,13 @@ export default {
         poppins: ['Poppins', 'sans-serif'],
       },
       colors: {
-        navBlue: "#8DA9C4",
-        bodyBlue: "#0B2545",
-        lightBlue: "#EEF4ED",
-        bodyBlue2: "#13315C",
-        hoverBlue: "#134074"
-
+        buttons: "rgb(193,177,162)",
+        buttonsT: "#48372d",
+        defaults: "#c1b1a2",
+        gradients: "#837c70"
+      },
+      backgroundImage: {
+        'warm-gradient': 'linear-gradient(135deg, #3e3227 0%, #7a5e2e 25%, #9b6d45 60%, #4a2d16 100%)',
       },
     },
   },

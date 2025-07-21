@@ -6,7 +6,6 @@ import { Button, Input, Logo } from "./index";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
-
 function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,7 +31,8 @@ function Signup() {
   return (
     <div className="flex items-center justify-center mt-[84px]">
       <div
-        className={`mx-auto w-full max-w-lg bg-lightBlue rounded-xl p-10 border border-black/10`}
+        className={`mx-auto w-full max-w-lg p-10 
+          backdrop-blur-sm bg-[#b8a595]/80 border border-white/30 rounded-xl shadow-xl px-6 py-5`}
       >
         <div className="mb-2 flex justify-center">
           <span className="inline-block w-full max-w-[100px]">
@@ -41,7 +41,7 @@ function Signup() {
         </div>
         <h2
           className="text-center text-2xl 
-        font-bold leading-tight"
+        font-bold leading-tight text-buttonsT"
         >
           Create your account{" "}
         </h2>
@@ -57,22 +57,24 @@ function Signup() {
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
 
         <form onSubmit={handleSubmit(create)}>
-          <div className="space-y-5 mt-2">
+          <div className="space-y-5 mt-2 flex flex-col items-center">
             <Input
               required
+              labelClassName="text-buttonsT"
               label="Full Name"
               type="text"
-              placeHolder="Enter your full name"
+              placeholder="Enter your full name"
               {...register("name", {
                 required: true,
               })}
             />
 
-            <Input 
+            <Input
               required
               label="Email"
+              labelClassName="text-buttonsT"
               type="email"
-              placeHolder="Enter your email"
+              placeholder="Enter your email"
               {...register("email", {
                 required: true,
                 validate: {
@@ -82,17 +84,24 @@ function Signup() {
               })}
             />
 
-            <Input required
+            <Input
+              required
+              labelClassName="text-buttonsT"
               label="Password"
               type="password"
-              placeHolder="Enter your password"
+              placeholder="Enter your password"
               {...register("password", {
                 required: true,
               })}
             />
-            <Button type="submit" className="w-full hover:scale-105 bg-navBlue border-gray-950 border">
-              Create Account
-            </Button>
+            <div>
+              <Button
+                type="submit"
+                className="w-full hover:scale-105 bg-buttons text-buttonsT border-gray-950 border"
+              >
+                Create Account
+              </Button>
+            </div>
           </div>
         </form>
       </div>

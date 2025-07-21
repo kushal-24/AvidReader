@@ -2,6 +2,7 @@ import React,{useEffect, useState} from 'react'
 import { Container, PostForm } from '../components'
 import appwriteService from '../appWrite/config'
 import { useNavigate, useParams } from 'react-router-dom'
+import Transition from '../Transition'
 
 function EditPost() {
     const[post,setPost] = useState(null)  
@@ -41,4 +42,4 @@ function EditPost() {
 ->So when PostForm finally renders, post is non-null, and form fields are populated.
 */
 
-export default EditPost
+export default Transition(EditPost)

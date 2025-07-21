@@ -3,65 +3,56 @@ import { useState, useEffect } from "react";
 import { Container } from "../components";
 import { PostCard } from "../components";
 import appwriteService from "../appWrite/config";
-import reader from '../assets/reader.jpg';
-import reader2 from '../assets/reader2.jpg';
+import reader from "../assets/reader.jpg";
+import reader2 from "../assets/reader2.jpg";
+import Transition from "../Transition";
 
 function Home() {
   const [posts, setPosts] = useState([]);
-  const[displayedText, setDisplayedText]=useState("");
-
+  const [loading, setLoading] = useState(true);
+  const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
     appwriteService.getPost([]).then((posts) => {
       if (posts) {
         setPosts(posts.documents);
       }
+      setLoading(false);
     });
   }, []);
 
-    useEffect(()=>{
-      const text="Hey, Welcome to AvidReader "
-      let index=0;
-      const interval= setInterval(()=>{
-        if (index < text.length) {
-          const nextChar = text.charAt(index); // safer than text[index]
-          setDisplayedText((prev) => prev + nextChar);
-          index++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 70)
-      return () => clearInterval(interval);
-    },[]);
+  useEffect(() => {
+    const text = "Hey, Welcome to AvidReader";
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index < text.length) {
+        const nextChar = text.charAt(index); // safer than text[index]
+        setDisplayedText((prev) => prev + nextChar);
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 70);
+    return () => clearInterval(interval);
+  }, []);
 
-  if (posts.length === 0) {
-    return (
-      <div className="w-full text-center">
-        <Container className="!p-0 !max-w-full flex-grow ">
-          <div className="flex flex-wrap">
-            <div className="w-[100vw]">
-              <img src={reader2} className=" w-full mt-[8vh] brightness-69 "></img>
-              <h2 className=" absolute text-6xl font-extrabold px-[20px] top-[90px]">{displayedText}</h2>
-            </div>
-          </div>
-        </Container>
-      </div>
-    );
-  } else {
-    return (
-      <div className="w-full py-8 mt-[15vh] mb-[7vh] ">
-        <Container className="h-[40vh]">
-          <div className="flex flex-wrap">
-            {posts.map((post) => (
-              <div key={post.$id} className="p-2 w-1/4">
-                <PostCard {...post} />
-              </div>
-            ))}
-          </div>
-        </Container>
-      </div>
-    );
-  }
+  return (
+    <div className="w-full py-8 mt-[10vh]">
+      <Container className="min-h-[40vh]">
+      {posts.length === 0 ? (
+        <h1 className=" font-extrabold text-gray-900 dark:text-white md:text-3xl">
+        <span className=" text-8xl bg-gradient-to-l from-[#3e2b1f] via-buttonsT to-black bg-clip-text text-transparent">{displayedText}</span></h1>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {posts.map((post) => (
+            <PostCard key={post.$id} {...post} />
+          ))}
+        </div>
+      )}
+    </Container>
+
+    </div>
+  );
 }
 
-export default Home;
+export default Transition(Home);

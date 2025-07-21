@@ -30,7 +30,8 @@ function Login() {
   return (
     <div className="flex items-center justify-center w-full mt-[84px]">
       <div
-        className={`mx-auto w-full max-w-lg bg-lightBlue rounded-xl p-10 border border-black/10`}
+        className={`mx-auto w-full max-w-lg opacity-89cp-10 
+          backdrop-blur-sm bg-white/60 border border-white/30 rounded-xl shadow-xl px-6 py-5`}
       >
         <div className="mb-2 flex justify-center jus">
           <span className="inline-block w-full max-w-[100px]">
@@ -55,8 +56,10 @@ function Login() {
             <Input
             required
             label="Email: "
+            labelClassName="text-buttonsT"
             type="email"
             placeholder="Enter the email pls"
+            
             {
               ...register("email", { 
                 required: "Email is required",
@@ -69,6 +72,7 @@ function Login() {
             required
             label="Password: "
             type="password" 
+            labelClassName="text-buttonsT"
             placeholder="Enter password"
             {...register("password", {
               required: true,
@@ -76,7 +80,7 @@ function Login() {
             /*^\S+@\S+$ is a regex that checks for:
             At least one non-space character before and after @ No spaces.*/
             />
-            <div className="flex justify-center"><Button className="transition-transform duration-300 hover:scale-105 bg-navBlue text-zinc-950 border-gray-950 border">Sign In</Button></div>
+            <div className="flex justify-center"><Button className="transition-transform duration-300 hover:scale-105 bg-buttons text-buttonsT border-gray-950 border">Sign In</Button></div>
           </div>
         </form>
       </div>
